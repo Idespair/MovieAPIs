@@ -26,4 +26,46 @@ public class Review {
         this.created = created;
         this.updated = updated;
     }
+
+    public Review(){}
+
+    public Long getReview_id() {
+        return review_id;
+    }
+
+    public void setReview_id(Long review_id) {
+        this.review_id = review_id;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public LocalDateTime getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(LocalDateTime updated) {
+        this.updated = updated;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
 }
