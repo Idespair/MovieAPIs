@@ -6,6 +6,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Reference;
 
 
+import java.util.Collection;
 import java.util.List;
 @Entity
 @Data
@@ -93,4 +94,17 @@ public class Movie {
         }
 
         public Movie(){}
+
+        public Movie(String imdbId, List<Review> reviews) {
+                this.imdbId = imdbId;
+                this.reviews = reviews;
+        }
+
+        public List<Review> getReviews() {
+                return reviews;
+        }
+
+        public void setReviews(List<Review> reviews) {
+                this.reviews = reviews;
+        }
 }

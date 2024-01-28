@@ -1,5 +1,6 @@
 package com.br.Idespair.MoviesAPIWithSQL.controller;
 
+import com.br.Idespair.MoviesAPIWithSQL.model.Movie;
 import com.br.Idespair.MoviesAPIWithSQL.model.Review;
 import com.br.Idespair.MoviesAPIWithSQL.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,9 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<Review> createReview(@RequestBody Map <String, String> payload) {
-        return new ResponseEntity<Review>(reviewService.createReview(payload.get("reviewBody"),payload.get("imdbId")), HttpStatus.CREATED);
+        return new ResponseEntity<Review>(reviewService.createReview(String.valueOf(payload.get("reviewBody")),payload.get("imdbId")), HttpStatus.CREATED);
     }
+
 }

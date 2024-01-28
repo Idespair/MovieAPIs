@@ -27,7 +27,17 @@ public class Review {
         this.updated = updated;
     }
 
+    public Review(String body, LocalDateTime created, LocalDateTime updated, Movie movie) {
+        this.body = body;
+        this.created = created;
+        this.updated = updated;
+        this.movie = movie;
+    }
+
     public Review(){}
+
+    public Review(String reviewBody, String imdbId, LocalDateTime now, LocalDateTime now1) {
+    }
 
     public Long getReview_id() {
         return review_id;

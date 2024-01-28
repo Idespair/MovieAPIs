@@ -1,32 +1,34 @@
 package com.br.Idespair.MoviesAPIWithSQL.service;
 
+import com.br.Idespair.MoviesAPIWithSQL.model.Movie;
 import com.br.Idespair.MoviesAPIWithSQL.model.Review;
+import com.br.Idespair.MoviesAPIWithSQL.repository.IMovieRepository;
 import com.br.Idespair.MoviesAPIWithSQL.repository.IReviewRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class ReviewService {
 
-    @Autowired
-    private IReviewRepository reviewRepository;
+        @Autowired
+        private IReviewRepository reviewRepository;
 
-    public Review createReview(String reviewBody, String imdbId){
-        try (EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("moviesapi")) {
-            EntityManager entityManager = entityManagerFactory.createEntityManager();
+        @Autowired
+        private IMovieRepository movieRepository;
 
-            entityManager.getTransaction().begin();
-            entityManager.persist(createReview(reviewBody, imdbId));
-            entityManager.getTransaction().commit();
+        @Transactional  // Add this annotation to enable Spring-managed transactions
+        public Review createReview(String reviewBody, String imdbId){
 
-            entityManager.close();
-            entityManagerFactory.close();
+            Review review = new Review(reviewBody,imdbId, LocalDateTime.now(), LocalDateTime.now());
+            reviewRepository.save(review);
+
+            Movie movie = new Movie();
+            movie.setReviews((List<Review>) review);
+
+            return review;
         }
-
-        return new Review();
-
     }
-}
