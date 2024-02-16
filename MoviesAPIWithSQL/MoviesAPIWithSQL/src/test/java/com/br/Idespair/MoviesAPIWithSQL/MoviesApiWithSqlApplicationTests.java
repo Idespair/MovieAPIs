@@ -14,9 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest
 class MoviesApiWithSqlApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
 
 	private Movie movie;
 

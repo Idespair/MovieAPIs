@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 @RestController
@@ -21,8 +22,9 @@ public class ReviewController {
     private ReviewService reviewService;
 
     @PostMapping
-    public ResponseEntity<Review> createReview(@RequestBody Map <String, String> payload) {
-        return new ResponseEntity<Review>(reviewService.createReview(String.valueOf(payload.get("reviewBody")),payload.get("imdbId")), HttpStatus.CREATED);
+    public ResponseEntity<Void> createReview(@RequestBody Review review){
+        reviewService.createReview(review);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 }

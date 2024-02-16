@@ -12,13 +12,16 @@ import java.util.List;
 @Data
 public class Review {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "reviewid")
     private Long review_id;
     private String body;
+    @Column(name = "datecreation")
     private LocalDateTime created;
+    @Column(name = "dateupdate")
     private LocalDateTime updated;
     @ManyToOne
-    @JoinColumn(name = "imdbId", nullable = false)
+    @JoinColumn(name = "movie")
     private Movie movie;
 
     public Review(String body, LocalDateTime created, LocalDateTime updated) {
